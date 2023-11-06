@@ -19,11 +19,17 @@
 */
 import UsersController from 'App/Controllers/Http/UsersController'
 import Route from '@ioc:Adonis/Core/Route'
+import DocumentsController from 'App/Controllers/Http/DocumentsController'
+
+Route.get('/', async ({ view }) => {
+  return view.render('home/show')
+})
+
 
 Route.group(() => {
-  Route.get('/', async ({ view }) => {
-    return view.render('welcome')
-  })
+  // Route.get('/', async ({ view }) => {
+  //   return view.render('welcome')
+  // })
   //Route.resource('/users', 'UsersController').apiOnly()
   Route.post('/users', 'UsersController.store').as('users.store')
   Route.get('/users', 'UsersController.index').as('users.index')
@@ -51,6 +57,12 @@ Route.group(() => {
   
   
 // }).prefix('/api/posts')
-  
 
+Route.group(() => {
+  Route.get('/', 'DocumentsController.index').as('index')
+  Route.get('/create', 'DocumentsController.create').as('create')
+  Route.get('/:id', 'DocumentsController.show').as('show')
+})
+  .prefix('/documents')
+  .as('documents')
 
