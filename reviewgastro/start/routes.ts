@@ -17,36 +17,38 @@
 | import './routes/customer''
 |
 */
-import UsersController from 'App/Controllers/Http/UsersController'
 import Route from '@ioc:Adonis/Core/Route'
-import DocumentsController from 'App/Controllers/Http/DocumentsController'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-Route.get('/', async ({ view }) => {
+
+Route.get('/', async ({ view }: HttpContextContract) => {
   return view.render('home/show')
-})
-
-
-Route.group(() => {
-  // Route.get('/', async ({ view }) => {
-  //   return view.render('welcome')
-  // })
-  //Route.resource('/users', 'UsersController').apiOnly()
-  Route.post('/users', 'UsersController.store').as('users.store')
-  Route.get('/users', 'UsersController.index').as('users.index')
-  Route.get('/users/:id', 'UsersController.show').as('users.show')
-  Route.delete('/users/:id', 'UsersController.destroy').as('users.destroy')
-  Route.patch('/users/:id', 'UsersController.update').as('users.update')
+}).as('home.show')
 
 
 
 
-  Route.post('/users/:postId/posts', 'PostsController.store').as('posts.store')
-  Route.get('/users/:userId/posts', 'PostsController.index').as('posts.index')
-  Route.get('/users/:userId/posts/:id', 'PostsController.show').as('posts.show')
-  Route.delete('/users/:userId/posts/:id', 'PostsController.destroy').as('posts.destroy')
-  Route.patch('/users/:userId/posts/:id', 'PostsController.update').as('posts.update')
+// Route.group(() => {
+//   // Route.get('/', async ({ view }) => {
+//   //   return view.render('welcome')
+//   // })
+//   //Route.resource('/users', 'UsersController').apiOnly()
+//   Route.post('/users', 'UsersController.store').as('users.store')
+//   Route.get('/users', 'UsersController.index').as('users.index')
+//   Route.get('/users/:id', 'UsersController.show').as('users.show')
+//   Route.delete('/users/:id', 'UsersController.destroy').as('users.destroy')
+//   Route.patch('/users/:id', 'UsersController.update').as('users.update')
 
-}).prefix('/api')
+
+
+
+//   Route.post('/users/:postId/posts', 'PostsController.store').as('posts.store')
+//   Route.get('/users/:userId/posts', 'PostsController.index').as('posts.index')
+//   Route.get('/users/:userId/posts/:id', 'PostsController.show').as('posts.show')
+//   Route.delete('/users/:userId/posts/:id', 'PostsController.destroy').as('posts.destroy')
+//   Route.patch('/users/:userId/posts/:id', 'PostsController.update').as('posts.update')
+
+// }).prefix('/api')
 
 
 // Route.group(() => {
@@ -58,11 +60,23 @@ Route.group(() => {
   
 // }).prefix('/api/posts')
 
-Route.group(() => {
-  Route.get('/', 'DocumentsController.index').as('index')
-  Route.get('/create', 'DocumentsController.create').as('create')
-  Route.get('/:id', 'DocumentsController.show').as('show')
-})
-  .prefix('/documents')
-  .as('documents')
+// Route.group(() => {
+//   Route.get('/', 'DocumentsController.index').as('index')
+//   Route.get('/create', 'DocumentsController.create').as('create')
+//   Route.get('/:id', 'DocumentsController.show').as('show')
+// })
+//   .prefix('/documents')
+//   .as('documents')
 
+Route.group(() => {
+  Route.group(() => {
+    Route.get('/', 'UsersController.index').as('index')
+    Route.get('/new', 'UsersController.create').as('create')
+    Route.post('/', 'UsersController.store').as('store')
+    Route.get('/:id/update', 'UsersController.update').as('update')
+    Route.patch('/:id', 'UsersController.patch').as('patch')
+    Route.get('/:id', 'UsersController.show').as('show')
+  })
+    .prefix('/users')
+    .as('users')
+    
