@@ -1,9 +1,8 @@
-import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import BaseValidator from 'App/Validators/BaseValidator'
 
-
-export default class CreatePostValidator {
+export default class CreatePostValidator extends BaseValidator {
   constructor(protected ctx: HttpContextContract) {
     super()
   }
@@ -15,19 +14,19 @@ export default class CreatePostValidator {
    * 1. The username must be of data type string. But then also, it should
    *    not contain special characters or numbers.
    *    ```
-   *     schema.string([ rules.alpha() ])
+   *     schema.string({}, [ rules.alpha() ])
    *    ```
    *
    * 2. The email must be of data type string, formatted as a valid
    *    email. But also, not used by any other user.
    *    ```
-   *     schema.string([
+   *     schema.string({}, [
    *       rules.email(),
    *       rules.unique({ table: 'users', column: 'email' }),
    *     ])
    *    ```
    */
-   public schema = schema.create({
+  public schema = schema.create({
     title: schema.string([
       rules.minLength(5),
       rules.maxLength(200),
@@ -52,6 +51,6 @@ export default class CreatePostValidator {
    *
    */
   public messages: CustomMessages = {
-    this.messages,
+    ...this.messages,
   }
 }

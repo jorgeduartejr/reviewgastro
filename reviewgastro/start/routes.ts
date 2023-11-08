@@ -26,6 +26,30 @@ Route.get('/', async ({ view }: HttpContextContract) => {
 }).as('home.show')
 
 
+Route.group(() => {
+  Route.group(() => {
+    Route.get('/', 'PostController.index').as('index')
+    Route.get('/new', 'PostController.create').as('create')
+    Route.post('/', 'PostController.store').as('store')
+    Route.get('/:id/update', 'PostController.update').as('update')
+    Route.patch('/:id', 'PostController.patch').as('patch')
+    Route.get('/:id', 'PostController.show').as('show')
+  })
+    .prefix('/posts')
+    .as('posts')
+
+
+  Route.group(() => {
+    Route.get('/', 'UsersController.index').as('index')
+    Route.get('/new', 'UsersController.create').as('create')
+    Route.post('/', 'UsersController.store').as('store')
+    Route.get('/:id/update', 'UsersController.update').as('update')
+    Route.patch('/:id', 'UsersController.patch').as('patch')
+    Route.get('/:id', 'UsersController.show').as('show')
+  })
+    .prefix('/users')
+    .as('users')
+}).namespace('App/Controllers/Http/WEB')
 
 
 // Route.group(() => {
@@ -68,15 +92,7 @@ Route.get('/', async ({ view }: HttpContextContract) => {
 //   .prefix('/documents')
 //   .as('documents')
 
-Route.group(() => {
-  Route.group(() => {
-    Route.get('/', 'UsersController.index').as('index')
-    Route.get('/new', 'UsersController.create').as('create')
-    Route.post('/', 'UsersController.store').as('store')
-    Route.get('/:id/update', 'UsersController.update').as('update')
-    Route.patch('/:id', 'UsersController.patch').as('patch')
-    Route.get('/:id', 'UsersController.show').as('show')
-  })
-    .prefix('/users')
-    .as('users')
-    
+
+
+
+
