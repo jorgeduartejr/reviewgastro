@@ -19,6 +19,18 @@ export default class Post extends BaseModel {
   @column()
   public userId: number
 
+  @column()
+  public likes: number
+
+  @column()
+  public dislikes: number
+
+  @column()
+  public saves: number
+
+  @column()
+  public favorites: number
+
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
 

@@ -1,24 +1,18 @@
 <header class="flex flex-row justify-center m-1">
-    <div class="flex flex-row justify-between max-w-7xl w-full m-2 items-center">
-      <div class="flex flex-row font-semibold text-2xl tracking-wide text-primary-900">
-        <a href="{{ route('home.show') }}">Review Gastronômico</a>
-      </div>
-      <nav class="flex flex-row gap-2" class="flex flex-row justify-between max-w-7xl w-full m-2 items-center">
-        <div class="mb-4">
-          <a href="{{ route('posts.create') }}" class="bg-blue-500 text-white py-2 px-3 rounded-lg inline-block hover:bg-blue-600 hover:text-white">Crie um Post</a>
-      </div>
-      
-      <div class="mb-4">
-          <a href="{{ route('posts.index') }}" class="bg-blue-500 text-white py-2 px-3 rounded-lg inline-block hover:bg-green-600 hover:text-white">Veja todos os posts</a>
-      </div>
-      
-      <div class="mb-4">
-          <a href="{{ route('users.create') }}" class="bg-blue-500 text-white py-2 px-3 rounded-lg inline-block hover:bg-orange-600 hover:text-white">Crie um Usuário</a>
-      </div>
-        
-
-      </nav>
-       
+  <div class="flex flex-row justify-between max-w-7xl w-full m-2 items-center">
+    <div class="flex flex-row font-semibold text-2xl tracking-wide text-primary-900">
+      <a href="{{ route('home.show') }}" class="hover:underline">Review Gastronômico</a>
     </div>
-  </header>
-  
+    <nav class="flex flex-row gap-2">
+      <div class="mb-4">
+        <a href="{{ route('posts.create') }}" class="bg-blue-500 text-white py-2 px-3 rounded-lg inline-block hover:bg-blue-600 hover:text-white">Criar Post</a>
+      </div>
+      <div class="mb-4">
+        <a href="{{ route('posts.index') }}" class="bg-blue-500 text-white py-2 px-3 rounded-lg inline-block hover:bg-green-600 hover:text-white">Ver Todos os Posts</a>
+      </div>
+      <div class="mb-4">
+        <a href="{{ route('users.create') }}" class="bg-blue-500 text-white py-2 px-3 rounded-lg inline-block hover:bg-orange-600 hover:text-white">Criar Usuário</a>
+      </div>
+    </nav>
+  </div>
+</header>

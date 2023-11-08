@@ -6,19 +6,42 @@ import PostServices from 'App/Services/PostServices'
 import CreatePostValidator from 'App/Validators/CreatePostValidator'
 
 export default class PostsController {
+
+  public async welcomeController({ view }: HttpContextContract) {
+
+    const posts = await Post.query().orderBy('created_at', 'desc').limit(10).fetch();
+    return view.render('welcome', { posts });
+  }
+
   public async create({ view }: HttpContextContract) {
     return view.render('posts/create')
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const payload = await request.validate(CreatePostValidator)
-
-    const user = await User.findOrFail(1)
-
-    const postServices = new PostServices()
-    const post = await postServices.create(user, payload)
+    const data = request.only(['title', 'content', 'user_id'])
+    const post = await Post.create(data)
+    // const image = request.file('image', {
+    //   size: '2mb',
+    //   extnames: ['jpg', 'png', 'jpeg'],
+    // })
+    // if image() {
+    //   await image.move(Application.publicPath('uploads'), {
+    //     name: `${new Date().getTime()}.${image.extname}`,
+    //   })
+    //   post.image = image.fileName
+    //   await post.save()
+    // }
 
     return response.redirect().toRoute('posts.show', { id: post.id })
+
+    // const payload = await request.validate(CreatePostValidator)
+
+    // const user = await User.findOrFail(1)
+
+    // const postServices = new PostServices()
+    // const post = await postServices.create(user, payload)
+
+    // return response.redirect().toRoute('posts.show', { id: post.id })
   }
 
   public async show({ params, view }: HttpContextContract) {

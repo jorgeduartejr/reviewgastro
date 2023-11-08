@@ -1,25 +1,20 @@
 
 @layout('layouts/main')
 
+
 @section('content')
-  <p>
-    Crie o seu usuário
-  </p>
-  <form action="/users" method="POST">
-    <div>
-      <label>
-        Email:
-      </label>
-      <input type="email" name="email" placeholder="Email" />
-    </div>
-    <div>
-      <label>
-        Senha:
-      </label>
-      <input type="password" name="password" placeholder="Senha" />
-    </div>
-    <button type="submit">
-      Criar
-    </button>
-  </form>
-@end
+  <div class="container mx-auto flex flex-col items-center justify-center h-screen">
+    <h1 class="text-3xl font-bold text-gray-800">Crie seu usuário</h1>
+    <form action="/users" method="POST" class="w-full max-w-md mx-auto mt-8">
+      <div class="mb-4">
+        <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Seu email" class="appearance-none rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-gray-700 font-bold mb-2">Senha:</label>
+        <input type="password" id="password" name="password" placeholder="Sua senha" class="appearance-none rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white py-2 px-3 rounded-lg w-full hover:bg-blue-600 hover:text-white">Criar</button>
+    </form>
+  </div>
+@endsection

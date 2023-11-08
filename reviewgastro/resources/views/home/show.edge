@@ -2,6 +2,8 @@
 
 @section('content')
 
+  <h1>Bem-vindo ao Nosso Blog</h1>
+
   <div class="flex w-full max-w-7xl mx-auto">
     <div class="flex flex-col gap-6 mt-10">
       <div class="text-7xl font-semibold text-primary-900">
@@ -12,7 +14,20 @@
       </p>
     </div>
   </div>
-   
+ 
 
-@end
+
+  <h2>Últimas Postagens:</h2>
+
+  <ul>
+    @each(post in posts)
+      <li>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+      </li>
+    @end
+  </ul>
+@endsection
+  
+
 

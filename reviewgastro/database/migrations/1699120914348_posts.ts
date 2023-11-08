@@ -10,6 +10,10 @@ export default class extends BaseSchema {
       table.string('title')
       table.string('image')
       table.integer('user_id').unsigned().references('user.id').inTable('users').onDelete('CASCADE')
+      table.integer('likes')
+      table.integer('dislikes')
+      table.integer('saves')
+      table.integer('favorites')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
