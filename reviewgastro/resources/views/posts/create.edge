@@ -1,24 +1,27 @@
-
 @layout('layouts/main')
 
 @section('content')
-  <form action="{{ route('posts.store') }}" method="POST">
-
+    <h1>Nova Postagem</h1>
     <div>
-      @!form.legend({ name: 'Título'})
-      @!form.input({ name: 'title', type: 'text' })
-    </div>
+    <form action="{{ route('posts.create') }}" method="POST" enctype="multipart/form-data">
 
-    <div>
-      @!form.legend({ name: 'Conteúdo'})
-      @!form.input({ name: 'content', type: 'text' })
-    </div>
+        <div class="mb-4">
+            <label for="title" class="block text-gray-600">Título:</label>
+            <input type="text" id="title" name="title" class="w-full border border-gray-300 rounded p-2" required>
+        </div>
 
-    <div>
-      @form.button()
-        Salvar
-      @end
-    </div>
-  </form>
+        <div class="mb-4">
+            <label for="body" class="block text-gray-600">Corpo:</label>
+            <textarea id="body" name="body" class="w-full border border-gray-300 rounded p-2" rows="4" required></textarea>
+        </div>
 
-@end
+        <div class="mb-4">
+            <label for="image" class="block text-gray-600">Imagem:</label>
+            <input type="file" id="image" name="image" class="border border-gray-300 p-2" accept="image/*">
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white rounded-lg p-2">Enviar</button>
+    </form>
+  </div>
+@endsection
+  
