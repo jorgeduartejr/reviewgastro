@@ -25,6 +25,13 @@ Route.get('/', async ({ view }: HttpContextContract) => {
   return view.render('home/show')
 }).as('home.show')
 
+Route.get('/login', 'SessionsController.create').as('sessions.create')
+Route.post('/login', 'SessionsController.store').as('sessions.store')
+Route.get('/logout', 'SessionsController.delete').as('sessions.delete')
+
+
+
+
 
 Route.group(() => {
   Route.group(() => {
@@ -50,6 +57,8 @@ Route.group(() => {
     .prefix('/users')
     .as('users')
 }).namespace('App/Controllers/Http/WEB')
+  .middleware('auth')
+  
 
 
 // Route.group(() => {
