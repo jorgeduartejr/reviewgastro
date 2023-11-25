@@ -43,7 +43,8 @@ Route.group(() => {
     Route.get('/:id', 'PostController.show').as('show')
   })
     .prefix('/posts')
-    .as('posts').middleware('auth')
+    .as('posts')
+    // .middleware('auth')
 
 
   Route.group(() => {

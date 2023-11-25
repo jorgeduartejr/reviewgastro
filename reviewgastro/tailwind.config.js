@@ -1,24 +1,90 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./resources/**/*.{edge,js,ts,jsx,tsx,vue}'],
+  content: ['./resources/**/*.{edge,js,ts,jsx,tsx,vue}',"./node_modules/flowbite/**/*.js"],
+  extend: {
+    colors: {
+      primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+    }
+  },
+  fontFamily: {
+    'body': [
+  'Inter', 
+  'ui-sans-serif', 
+  'system-ui', 
+  '-apple-system', 
+  'system-ui', 
+  'Segoe UI', 
+  'Roboto', 
+  'Helvetica Neue', 
+  'Arial', 
+  'Noto Sans', 
+  'sans-serif', 
+  'Apple Color Emoji', 
+  'Segoe UI Emoji', 
+  'Segoe UI Symbol', 
+  'Noto Color Emoji'
+],
+    'sans': [
+  'Inter', 
+  'ui-sans-serif', 
+  'system-ui', 
+  '-apple-system', 
+  'system-ui', 
+  'Segoe UI', 
+  'Roboto', 
+  'Helvetica Neue', 
+  'Arial', 
+  'Noto Sans', 
+  'sans-serif', 
+  'Apple Color Emoji', 
+  'Segoe UI Emoji', 
+  'Segoe UI Symbol', 
+  'Noto Color Emoji'
+]
+  },
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'primary': {
-          '50': '#f4f7fa',
-          '100': '#e6ecf3',
-          '200': '#d4dee9',
-          '300': '#bbccdd',
-          '400': '#92acc8',
-          '500': '#7893b9',
-          '600': '#667daa',
-          '700': '#5a6d9b',
-          '800': '#4d5a80',
-          '900': '#414c67',
-          '950': '#2b3140',
-        },
-      },
+        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+      }
     },
+    fontFamily: {
+      'body': [
+    'Inter', 
+    'ui-sans-serif', 
+    'system-ui', 
+    '-apple-system', 
+    'system-ui', 
+    'Segoe UI', 
+    'Roboto', 
+    'Helvetica Neue', 
+    'Arial', 
+    'Noto Sans', 
+    'sans-serif', 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji'
+  ],
+      'sans': [
+    'Inter', 
+    'ui-sans-serif', 
+    'system-ui', 
+    '-apple-system', 
+    'system-ui', 
+    'Segoe UI', 
+    'Roboto', 
+    'Helvetica Neue', 
+    'Arial', 
+    'Noto Sans', 
+    'sans-serif', 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji'
+  ]
+    }
   },
-  plugins: [],
+  plugins: [ require('flowbite/plugin')],
 }
