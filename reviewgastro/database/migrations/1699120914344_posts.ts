@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('content')
       table.string('title')
       table.string('image')
-      table.integer('user_id').unsigned().references('user.id').inTable('users').onDelete('CASCADE')
+      table.integer('user_id')//.unsigned().references('user.id').inTable('users').onDelete('CASCADE')
       table.integer('likes')
       table.integer('dislikes')
       table.integer('saves')

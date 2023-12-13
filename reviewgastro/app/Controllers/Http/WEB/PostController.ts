@@ -1,9 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import Post from 'App/Models/Post'
+//const Post = use('App/Models/Post');
 import UserServices from 'App/Services/UserServices'
 import PostServices from 'App/Services/PostServices'
 import CreatePostValidator from 'App/Validators/CreatePostValidator'
+import { ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
+import { QueryContract } from '@ioc:Adonis/Lucid/Orm';
 
 export default class PostsController {
 
@@ -32,7 +35,7 @@ export default class PostsController {
     //   await post.save()
     // }
 
-    return response.redirect().toRoute('posts.show', { id: post.id })
+    return response.redirect().toRoute('posts.index', { id: post.id })
 
     // const payload = await request.validate(CreatePostValidator)
 
@@ -84,5 +87,22 @@ export default class PostsController {
     await post.delete()
 
     return response.redirect().toRoute('posts.index')
+  }
+
+  public async userPosts({ auth, view }) {
+    try {
+      // Obtém o usuário autenticado
+      const user = auth.user;
+
+      // Obtém todos os posts do usuário ordenados por data de criação
+      const posts = await Post.query().where('user_id', user.id).orderBy('created_at', 'desc').fetch();
+
+      // Renderiza a visão com os posts
+      return view.render('posts/userPosts', { posts: posts.toJSON() });
+    } catch (error) {
+      // Em caso de erro, renderiza a visão de erro
+      console.error(error);
+      return view.render('error', { error: 'Erro ao recuperar os posts do usuário.' });
+    }
   }
 }

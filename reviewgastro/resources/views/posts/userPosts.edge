@@ -1,8 +1,8 @@
 @layout('layouts/main')
 
 @section('content')
-  <div class="posts">
-    <h1>Todas as Postagens</h1>
+  <div class="container mx-auto mt-8">
+    <h1 class="text-2xl font-bold mb-4">Meus Posts</h1>
     <ul>
       @each(post in posts)
         <li>

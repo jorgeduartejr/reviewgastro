@@ -16,6 +16,12 @@
       <button type="submit" class="bg-blue-500 text-white py-2 px-3 rounded-lg w-full hover:bg-blue-600 hover:text-white">Criar</button>
     </form>
   </div>
-  
+  <script>
+    document.querySelector('form').addEventListener('submit', function () {
+      setTimeout(function () {
+        window.location.href = 'user.show'; // Redireciona para a página de login do AdonisJS
+      }, 500);
+    });
+  </script>
 
 @endsection

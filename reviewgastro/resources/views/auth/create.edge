@@ -1,27 +1,21 @@
-@layout('layouts/main')
+@extends('layouts/main')
 
-<section id="content">
-    <p>
-      Faça o login
-    </p>
-    <form action="{{ route('auth.store') }}" method="POST">
-      <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email">
-      </div>
-      <div>
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password">
-      </div>
-      <div>
-        @if(flashMessages.has('errors.login'))
-          <p class="text-sm text-primary-500">
-            {{ flashMessages.get('errors.login') }}
-          </p>
-        @endif
-      </div>
-      <div>
-        <button type="submit">Logar</button>
-      </div>
-    </form>
-  </section>
+@section('content')
+  <h2>Login</h2>
+
+  @if (session.has('loginError'))
+    <p style="color: red;">{{ session.get('loginError') }}</p>
+  @endif
+
+  <form action="{{ route('login') }}" method="post">
+    {{ csrfField() }}
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+@endsection

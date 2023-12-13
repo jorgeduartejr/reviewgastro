@@ -10,12 +10,12 @@ export default class SessionsController {
         const email = request.input('email')
         const password = request.input('password')
 
-        try {
+        try { 
             await auth.use('web').attempt(email, password)
-            response.redirect().toRoute('home.show')
+            response.redirect().toRoute('posts.index')
         }
         catch (error) {
-            return response.badRequest('Invalido')
+            return response.badRequest('Invalidoaaaaa')
         }
         //return view.render('sessions/create')
     }

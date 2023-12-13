@@ -35,16 +35,23 @@ Route.get('/logout', 'SessionsController.delete').as('sessions.delete')
 
 Route.group(() => {
   Route.group(() => {
-    Route.get('/', 'PostController.index').as('index')
     Route.get('/new', 'PostController.create').as('create')
     Route.post('/', 'PostController.store').as('store')
     Route.get('/:id/update', 'PostController.update').as('update')
     Route.patch('/:id', 'PostController.patch').as('patch')
-    Route.get('/:id', 'PostController.show').as('show')
+    Route.get('/my-posts', 'PostController.userPosts').as('userPosts')
   })
     .prefix('/posts')
     .as('posts')
-    // .middleware('auth')
+    .middleware('auth')
+
+    Route.group(() => {
+      Route.get('/', 'PostController.index').as('index')
+      Route.get('/:id', 'PostController.show').as('show')
+    })
+    .prefix('/posts')
+    .as('posts')
+    
 
 
   Route.group(() => {
@@ -57,6 +64,7 @@ Route.group(() => {
   })
     .prefix('/users')
     .as('users')
+    .middleware('auth')
 }).namespace('App/Controllers/Http/WEB')
   
   
