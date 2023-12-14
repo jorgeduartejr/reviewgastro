@@ -21,14 +21,14 @@ export default class UsersController {
     return response.redirect().toRoute('users.show', { id: user.id })
   }
 
-  public async update({ parans, view }: HttpContextContract) {
-    const user = await User.findOrFail(parans.id)
+  public async update({ params, view }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
 
     return view.render('users/update', { user: user })
   }
 
-  public async patch({ request, response, parans }: HttpContextContract) {
-    const user = await User.findOrFail(parans.id)
+  public async patch({ request, response, params }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
 
     const email = request.input('email', undefined)
     const password = request.input('password', undefined)
@@ -46,16 +46,16 @@ export default class UsersController {
     return view.render('users/index', { users: users })
   }
 
-  public async destroy({ parans, response }: HttpContextContract) {
-    const user = await User.findOrFail(parans.id)
+  public async destroy({ params, response }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
 
     await user.delete()
 
     return response.redirect().toRoute('users.index')
   }
 
-  public async show({ parans, view }: HttpContextContract) {
-    const user = await User.findOrFail(parans.id)
+  public async show({ params, view }: HttpContextContract) {
+    const user = await User.findOrFail(params.id)
 
     return view.render('users/show', { user: user })
   }
