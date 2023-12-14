@@ -64,7 +64,8 @@ Route.group(() => {
   })
     .prefix('/users')
     .as('users')
-    .middleware('auth')
+    // .middleware('auth')
+    
 }).namespace('App/Controllers/Http/WEB')
   
   
